@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 function Middle(data) {
-  console.log({ datadfsd: data })
+  //console.log({ datadfsd: data })
 
 
 

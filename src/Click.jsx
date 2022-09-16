@@ -4,6 +4,7 @@ import { useParams , Link} from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { RiHome7Line , RiArrowLeftFill , RiArrowRightFill } from "react-icons/ri";
 import { getProductDetail } from "./Api"
+import NotFound from './NotFound';
 
 
 
@@ -15,6 +16,7 @@ import { getProductDetail } from "./Api"
     
    const [deatils, updateDetail] = useState();
    const [count, updateCount] = useState(1);
+  const [loading, setLoading] = useState(true);
 
    
 
@@ -27,8 +29,10 @@ import { getProductDetail } from "./Api"
     idEffect.then(function(response) {
      // console.log("this is your data for", response.data)
       updateDetail(response.data);
-
-    })
+   }).catch(function() {
+      setLoading(false);
+      console.log("this lodng has done know")
+    });
 
 
   }, [id]);
@@ -50,9 +54,15 @@ import { getProductDetail } from "./Api"
 
 
 
-  if (!deatils){
-    return <div>loading</div>
+  if (loading) {
+    return <div>loading...</div>
   }
+
+
+  if (!deatils){
+    return <NotFound/>
+  }
+
 
 
   

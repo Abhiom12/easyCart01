@@ -5,6 +5,8 @@ import Click from "./Click"
 import Header from './Header';
 import Footer from './Footer';
 import { useState } from 'react';
+import NotFound from './NotFound';
+
 
 
 import { Routes, Route } from "react-router-dom";
@@ -42,10 +44,12 @@ const[totalCount, updateTotalCount] = useState({});
         <Route index element={<AppData/>} />
         <Route path="/product" element={<AppData/>} />
        <Route path="/product/details/:id/" element={<Click  onAddToCart={ShowCount}/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </div>
   </div>
         <Footer></Footer>
+ 
 
 </div>
   );}

@@ -12,25 +12,18 @@ function AppData() {
 
   const [search, updateSearch] = useState("");
   const [product, updateProduct] = useState([]);
- // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(function() {
     const effect = getProductList();
     effect.then(function(response) {
-      console.log("this is your data", response.data.products)
+      // console.log("this is your data", response.data.products)
       updateProduct(response.data.products);
-    //  setLoading(false);
-
+      setLoading(false);
     })
-
+    
   }, []);
-
-
-
-  // if(loading){
-  //   return <div>your data is coming...</div>
-  // }
 
 
   const [data, updateData] = useState(product)
@@ -60,32 +53,38 @@ function AppData() {
 
   }
   const [short, updateShort] = useState("default")
-  
+
   if (short == "default") {
     data.sort(function(x, y) {
       return y.rating - x.rating;
     })
   } else
-  if (short == "priceLow") {
-    data.sort(function(x, y) {
-      return x.price - y.price;
-    })
-  } else if (short == "priceHigh") {
-    data.sort(function(x, y) {
-      return y.price - x.price;
-    })
-  } else if (short == "title") {
-    data.sort(function(x, y) {
-      return y.title > x.title ? 1 : -1;
-    })
-  }
+    if (short == "priceLow") {
+      data.sort(function(x, y) {
+        return x.price - y.price;
+      })
+    } else if (short == "priceHigh") {
+      data.sort(function(x, y) {
+        return y.price - x.price;
+      })
+    } else if (short == "title") {
+      data.sort(function(x, y) {
+        return y.title > x.title ? 1 : -1;
+      })
+    }
 
 
 
   function shortValue(event) {
     updateShort(event.target.value)
-   // console.log(event.target.value, "this the value you want")
+    // console.log(event.target.value, "this the value you want")
   }
+
+  if (loading) {
+    return <div>loading...</div>
+  }
+
+
 
   return (
     <div className="bg-slate-300">
