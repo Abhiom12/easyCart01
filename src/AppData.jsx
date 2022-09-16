@@ -84,7 +84,7 @@ function AppData() {
 
   function shortValue(event) {
     updateShort(event.target.value)
-    console.log(event.target.value, "this the value you want")
+   // console.log(event.target.value, "this the value you want")
   }
 
   return (
